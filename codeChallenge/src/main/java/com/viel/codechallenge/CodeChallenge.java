@@ -19,7 +19,13 @@ public class CodeChallenge {
 
         rs.printWallet();
 
-//        String resp = cs.getAllAssets();
-//        System.out.println(resp);
+        String resp = cs.getAllAssets();
+        System.out.println(resp);
+
+        String resp2 = cs.getAssetHistory("bitcoin", "d1", "1617753600000", "1617753601000");
+        System.out.println(resp2);
+        
+        String resp3 = cs.getAssetHistory("ethereum", "d1", "1617753600000", "1617753601000");
+        System.out.println(resp3);
     }
 }

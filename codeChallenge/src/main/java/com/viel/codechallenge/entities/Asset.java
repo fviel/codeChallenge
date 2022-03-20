@@ -25,23 +25,20 @@ public class Asset {
     private BigDecimal priceUsd;
     private BigDecimal changePercent24Hr;
     private BigDecimal vwap24Hr;
+    private String explorer;
 
     public Asset() {
     }
 
-    public Asset(String id, int rank, String symbol, String name, BigDecimal supply, BigDecimal maxSupply, BigDecimal marketCapUsd, BigDecimal volumeUsd24Hr, BigDecimal priceUsd, BigDecimal changePercent24Hr, BigDecimal vwap24Hr) {
-        this.id = id;
-        this.rank = rank;
-        this.symbol = symbol;
-        this.name = name;
-        this.supply = supply;
-        this.maxSupply = maxSupply;
-        this.marketCapUsd = marketCapUsd;
-        this.volumeUsd24Hr = volumeUsd24Hr;
-        this.priceUsd = priceUsd;
-        this.changePercent24Hr = changePercent24Hr;
-        this.vwap24Hr = vwap24Hr;
-    }       
+    public String getExplorer() {
+        return explorer;
+    }
+
+    public void setExplorer(String explorer) {
+        this.explorer = explorer;
+    }
+
+         
 
     public String getId() {
         return id;
@@ -155,6 +152,6 @@ public class Asset {
 
     @Override
     public String toString() {
-        return "Asset{" + "id=" + id + ", rank=" + rank + ", symbol=" + symbol + ", name=" + name + ", supply=" + supply + ", maxSupply=" + maxSupply + ", marketCapUsd=" + marketCapUsd + ", volumeUsd24Hr=" + volumeUsd24Hr + ", priceUsd=" + priceUsd + ", changePercent24Hr=" + changePercent24Hr + ", vwap24Hr=" + vwap24Hr + '}';
-    }    
+        return "Asset{" + "id=" + id + ", rank=" + rank + ", symbol=" + symbol + ", name=" + name + ", supply=" + supply + ", maxSupply=" + maxSupply + ", marketCapUsd=" + marketCapUsd + ", volumeUsd24Hr=" + volumeUsd24Hr + ", priceUsd=" + priceUsd + ", changePercent24Hr=" + changePercent24Hr + ", vwap24Hr=" + vwap24Hr + ", explorer=" + explorer + '}';
+    }       
 }

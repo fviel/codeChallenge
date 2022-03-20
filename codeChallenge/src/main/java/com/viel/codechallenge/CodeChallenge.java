@@ -4,7 +4,7 @@
  */
 package com.viel.codechallenge;
 
-import com.viel.codechallenge.entities.Wallet;
+import com.viel.codechallenge.entities.Assets;
 import com.viel.codechallenge.services.CryptoService;
 import com.viel.codechallenge.services.ResourcesService;
 
@@ -18,10 +18,12 @@ public class CodeChallenge {
         CryptoService cs = new CryptoService();
         ResourcesService rs = new ResourcesService();
 
-        rs.printWallet();
-        
-        Wallet wallet = rs.readWallet();
-        System.out.println(wallet);
+        Assets assets = cs.getAllAssetsAsObject();
+        System.out.println(assets);
+//        rs.printWallet();
+//        
+//        Wallet wallet = rs.readWallet();
+//        System.out.println(wallet);
 
 //        String resp = cs.getAllAssets();
 //        System.out.println(resp);

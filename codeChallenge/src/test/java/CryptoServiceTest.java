@@ -19,7 +19,7 @@ public class CryptoServiceTest {
     @Test
     public void testCryptoServiceAvalability(){
         CryptoService cs = new CryptoService();  
-        String resp = cs.getAllAssets();
+        String resp = cs.getAllAssetsAsString();
         assertNotNull(resp); 
     }
     

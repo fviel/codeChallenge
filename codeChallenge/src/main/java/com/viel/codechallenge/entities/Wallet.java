@@ -29,8 +29,7 @@ public class Wallet {
         initiateItens();
         itens.add(wi);
         return true;
-    }
-    
+    }    
 
     @Override
     public String toString() {
@@ -41,5 +40,4 @@ public class Wallet {
         response = response + "\n}";
         return response;
     }
-
 }

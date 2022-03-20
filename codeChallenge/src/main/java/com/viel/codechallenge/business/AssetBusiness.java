@@ -57,8 +57,12 @@ public class AssetBusiness {
             List<Future<WalletItemUpdated>> retornosFuturos = exec.invokeAll(tasks);
             for (Future<WalletItemUpdated> f : retornosFuturos) {
                 updatedWalletItens.add(getFutureResponseAsWalletItemUpdated(f));
-                //System.out.println(getFutureResponseAsWalletItemUpdated(f));
-            }
+                System.out.println(getFutureResponseAsWalletItemUpdated(f));
+            } 
+             
+            AnalysisResponse response  = analiseWallet(updatedWalletItens);
+            System.out.println(response);
+            
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (Exception ex) {
@@ -72,19 +76,41 @@ public class AssetBusiness {
             }
         } catch (InterruptedException ie) {
             tasksNaoExecutadas = exec.shutdownNow();
-        }
-
-        //AnalysisResponse ar = AnaliseWallet()
+        }       
     }
 
     private AnalysisResponse analiseWallet(List<WalletItemUpdated> wiuList) {
         AnalysisResponse resp = new AnalysisResponse();
+        
+        BigDecimal total = BigDecimal.ZERO;
+        WalletItemUpdated best = wiuList.get(0);
+        WalletItemUpdated worst = wiuList.get(0);
 
-//        for(WalletItemUpdated wiu : wiuList){
-//            resp.set
-//        }
+        for(WalletItemUpdated wiu : wiuList){
+            //defines total
+            total = total.add(wiu.getItemValue());    
+            
+            //identifies the best
+            //int comparisonB = best.getPerformance().compareTo(wiu.getPerformance());
+            if(best.getPerformance().compareTo(wiu.getPerformance()) == -1){
+                best = wiu;
+            }
+            
+            //identifies the worst
+            //int comparisonW = worst.getPerformance().compareTo(wiu.getPerformance());
+            if(worst.getPerformance().compareTo(wiu.getPerformance()) == -1){
+                worst = wiu;
+            }
+        }
+        
+        resp.setBestAsset(best.getSymbol());
+        resp.setBestPerformance(best.getPerformance());
+        resp.setTotal(total);
+        resp.setWorstAsset(worst.getSymbol());
+        resp.setWorstPerformance(worst.getPerformance());               
         return resp;
     }
+ 
 
     private void printFutureResponse(Future<WalletItemUpdated> futureResponse) {
         WalletItemUpdated resp;

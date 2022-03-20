@@ -29,6 +29,17 @@ public class Wallet {
         initiateItens();
         itens.add(wi);
         return true;
+    }   
+    
+    public int getSize(){
+        if(Objects.nonNull(itens)){
+            return itens.size();
+        }
+        return 0;
+    }
+
+    public List<WalletItem> getItens() {
+        return itens;
     }    
 
     @Override

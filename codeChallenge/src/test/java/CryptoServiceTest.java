@@ -16,12 +16,13 @@ import static org.junit.Assert.*;
  */
 public class CryptoServiceTest {
     
-    @Test
-    public void testCryptoServiceAvalability(){
-        CryptoService cs = new CryptoService();  
-        String resp = cs.getAllAssetsAsString();
-        assertNotNull(resp); 
-    }
+    //comentei, pois muitas requisições gerariam um HTTP 429
+//    @Test
+//    public void testCryptoServiceAvalability(){
+//        CryptoService cs = new CryptoService();  
+//        String resp = cs.getAllAssetsAsString();
+//        assertNotNull(resp); 
+//    }
     
     @Test
     public void testIfQuotationIsRight(){

@@ -98,7 +98,7 @@ public class AssetBusiness {
             
             //identifies the worst
             //int comparisonW = worst.getPerformance().compareTo(wiu.getPerformance());
-            if(worst.getPerformance().compareTo(wiu.getPerformance()) == -1){
+            if(worst.getPerformance().compareTo(wiu.getPerformance()) == 1){
                 worst = wiu;
             }
         }

@@ -4,9 +4,10 @@
  */
 package com.viel.codechallenge.services;
 
+import com.viel.codechallenge.entities.Wallet;
+import com.viel.codechallenge.entities.WalletItem;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +15,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -63,6 +65,23 @@ public class ResourcesService {
             ioe.printStackTrace();
             return null;
         }
+    }
+    
+    public Wallet readWallet(){
+        InputStream is = getFileFromResourcesAsInputStream("wallet.csv");
+        List<String> lines = readBufferedFileContent(is);
+        Wallet wallet = new Wallet();
+        for(String line : lines){
+            List<String> fields = Arrays.asList(line.split(","));
+            if( Objects.nonNull(fields) &&
+                    !fields.get(0).toUpperCase().equals("SYMBOL") &&
+                    !fields.isEmpty() &&
+                    fields.size()==3){
+                WalletItem wi = new WalletItem(fields.get(0), fields.get(1), fields.get(2));
+                wallet.addWalletItem(wi);                
+            }
+        }        
+        return wallet;
     }
     
     public void print(List<String> datas){

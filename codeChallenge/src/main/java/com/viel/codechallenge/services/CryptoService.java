@@ -4,11 +4,13 @@
  */
 package com.viel.codechallenge.services;
 
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
+import com.viel.codechallenge.entities.HistoryQuotationResponse;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
@@ -34,19 +36,21 @@ public class CryptoService {
         return response;
     }
 
-    public String getAssetHistory(String id, String interval, String start, String end) {
-//        MultivaluedMap <String, String> params = new MultivaluedMapImpl();
-//        params.add("start", start);
-//        params.add("end", end);
-
+    public String getAssetHistoryAsString(String id, String interval, String start, String end) {
         MultivaluedMap<String, String> params = new MultivaluedMapImpl();
         params.add("interval", interval);
         params.add("start", start);
         params.add("end", end);
-
-        //String response = service.path("/v2").path("/assets").path(id+"/history").path("/d1").queryParams(params).accept(MediaType.APPLICATION_JSON).get(String.class);
         String response = service.path("/v2").path("/assets").path(id + "/history").queryParams(params).accept(MediaType.APPLICATION_JSON).get(String.class);
         return response;
     }
+    
+    public HistoryQuotationResponse getAssetHistoryAsObject(String id, String interval, String start, String end) {
+        Gson gson = new Gson();
+        HistoryQuotationResponse response = gson.fromJson(getAssetHistoryAsString( id,  interval,  start,  end), HistoryQuotationResponse.class);
+        return response;
+    }
+    
+    
 
 }

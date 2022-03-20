@@ -26,11 +26,9 @@ public class CryptoServiceTest {
     @Test
     public void testIfQuotationIsRight(){
         CryptoService cs = new CryptoService();
-        String resp2 = cs.getAssetHistory("bitcoin", "d1", "1617753600000", "1617753601000");        
-        Gson gson = new Gson();
-        HistoryQuotationResponse asset1 = gson.fromJson(resp2, HistoryQuotationResponse.class);
+        HistoryQuotationResponse resp = cs.getAssetHistoryAsObject("bitcoin", "d1", "1617753600000", "1617753601000"); 
         String expectedValue = "56999.9728252053067291";
-        String receivedValue = asset1.getData().get(0).getPriceUsd();
+        String receivedValue = resp.getData().get(0).getPriceUsd();
         assertEquals(expectedValue, receivedValue); 
     }
     

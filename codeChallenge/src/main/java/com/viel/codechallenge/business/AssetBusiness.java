@@ -57,7 +57,7 @@ public class AssetBusiness {
             List<Future<WalletItemUpdated>> retornosFuturos = exec.invokeAll(tasks);
             for (Future<WalletItemUpdated> f : retornosFuturos) {
                 updatedWalletItens.add(getFutureResponseAsWalletItemUpdated(f));
-                System.out.println(getFutureResponseAsWalletItemUpdated(f));
+                //System.out.println(getFutureResponseAsWalletItemUpdated(f));
             } 
              
             AnalysisResponse response  = analiseWallet(updatedWalletItens);
